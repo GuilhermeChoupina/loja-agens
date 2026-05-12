@@ -7,11 +7,20 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
 body {
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Roboto', sans-serif;
     background-color: #0d1b2a;
     color: #ffffff;
     line-height: 1.6;
+}
+
+section {
+    scroll-margin-top: 120px;
 }
 
 a {
@@ -25,7 +34,7 @@ a:hover {
 
 button {
     cursor: pointer;
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 /* Header fixo */
@@ -39,6 +48,7 @@ header {
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
+    gap: 1rem;
 }
 
 .logo {
@@ -59,9 +69,22 @@ nav {
     gap: 2rem;
 }
 
+nav.open {
+    max-height: 240px;
+}
+
 nav a {
     color: #ffffff;
     font-weight: 400;
+}
+
+.mobile-menu {
+    display: none;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 1.7rem;
+    cursor: pointer;
 }
 
 .cart-icon {
@@ -235,6 +258,22 @@ nav a {
     border-bottom: 1px solid #4fc3f7;
 }
 
+.cart-item div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.cart-item button {
+    background-color: #ff4444;
+    color: #ffffff;
+    border: none;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+}
+
 .cart-total {
     font-weight: 700;
     margin-top: 1rem;
@@ -314,9 +353,118 @@ footer {
 }
 
 /* Responsivo */
+@media (max-width: 992px) {
+    header {
+        padding: 1rem 1.5rem;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+
+    nav {
+        gap: 1rem;
+    }
+
+    .filters {
+        gap: 0.75rem;
+    }
+
+    .product-grid {
+        gap: 1.5rem;
+    }
+
+    .about-features {
+        gap: 1.5rem;
+    }
+}
+
 @media (max-width: 768px) {
+    header {
+        padding: 1rem;
+        position: relative;
+        justify-content: flex-start;
+    }
+
+    .logo {
+        flex: 1;
+    }
+
+    .mobile-menu {
+        display: block;
+        z-index: 1001;
+        padding: 0.5rem;
+    }
+
+    nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #1a3a6b;
+        flex-direction: column;
+        gap: 0;
+        overflow: hidden;
+        max-height: 0;
+        border-bottom: 1px solid rgba(79, 195, 247, 0.2);
+        transition: max-height 0.3s ease;
+    }
+
+    nav.open {
+        max-height: 240px;
+    }
+
+    nav a {
+        display: block;
+        padding: 1rem 1.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    nav a:first-of-type {
+        border-top: none;
+    }
+
+    .cart-icon {
+        position: relative;
+        margin-left: auto;
+        padding: 0.5rem;
+    }
+
+    .hero {
+        height: auto;
+        padding: 3rem 1.5rem;
+    }
+
     .hero h1 {
-        font-size: 2rem;
+        font-size: 2.2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .products,
+    .about {
+        padding: 3rem 1.5rem;
+    }
+
+    .about {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cart-sidebar {
+        width: 100%;
+        max-width: 360px;
+    }
+
+    .toast {
+        left: 1rem;
+        right: 1rem;
     }
 
     .product-grid {
@@ -325,10 +473,65 @@ footer {
 
     .filters {
         flex-direction: column;
-        align-items: center;
+        align-items: stretch;
+    }
+
+    .filter-btn {
+        width: 100%;
+        max-width: 320px;
     }
 
     .about-features {
         flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 0.75rem 1rem;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    .mobile-menu {
+        font-size: 1.9rem;
+    }
+
+    .hero {
+        padding: 2.5rem 1rem;
+    }
+
+    .hero h1 {
+        font-size: 1.9rem;
+    }
+
+    .hero p {
+        font-size: 0.95rem;
+    }
+
+    .btn {
+        padding: 0.95rem 1rem;
+    }
+
+    .products,
+    .about,
+    footer {
+        padding: 2.5rem 1rem;
+    }
+
+    .product-card {
+        padding: 1.25rem;
+    }
+
+    .cart-sidebar {
+        max-width: 100%;
+        right: -100%;
+    }
+
+    .footer-info p {
+        font-size: 0.95rem;
+        line-height: 1.5;
     }
 }

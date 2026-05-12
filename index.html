@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loja AGENS FITNESS</title>
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="estilo/style.css">
 </head>
 <body>
@@ -16,11 +16,12 @@
             </svg>
             AGENS FITNESS
         </div>
+        <button class="mobile-menu" onclick="toggleMenu()" aria-label="Abrir menu" type="button">☰</button>
         <nav>
-            <a href="#hero">Início</a>
-            <a href="#products">Produtos</a>
-            <a href="#about">Sobre</a>
-            <a href="#contact">Contato</a>
+            <a href="#hero" onclick="scrollToSection('hero'); event.preventDefault();">Início</a>
+            <a href="#products" onclick="scrollToSection('products'); event.preventDefault();">Produtos</a>
+            <a href="#about" onclick="scrollToSection('about'); event.preventDefault();">Sobre</a>
+            <a href="#contact" onclick="scrollToSection('contact'); event.preventDefault();">Contato</a>
         </nav>
         <div class="cart-icon" onclick="toggleCart()">
             🛒

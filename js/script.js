@@ -61,6 +61,23 @@ function adicionarAoCarrinho(nome) {
     }
 }
 
+// Função para remover do carrinho
+function removerDoCarrinho(nome) {
+    const index = carrinho.findIndex(i => i.nome === nome);
+    if (index !== -1) {
+        const item = carrinho[index];
+        item.quantidade--;
+        if (item.quantidade === 0) {
+            carrinho.splice(index, 1);
+        }
+        // Devolver ao estoque
+        const produto = produtos.find(p => p.nome === nome);
+        produto.estoque++;
+        salvarCarrinho();
+        atualizarCarrinho();
+    }
+}
+
 // Função para salvar carrinho no localStorage
 function salvarCarrinho() {
     localStorage.setItem('carrinho', JSON.stringify(carrinho));
@@ -79,7 +96,10 @@ function atualizarCarrinho() {
         itemDiv.className = 'cart-item';
         itemDiv.innerHTML = `
                     <span>${item.nome} (x${item.quantidade})</span>
-                    <span>R$ ${(item.preco * item.quantidade).toFixed(2).replace('.', ',')}</span>
+                    <div>
+                        <span>R$ ${(item.preco * item.quantidade).toFixed(2).replace('.', ',')}</span>
+                        <button onclick="removerDoCarrinho('${item.nome}')">Remover</button>
+                    </div>
                 `;
         cartItems.appendChild(itemDiv);
         total += item.preco * item.quantidade;
@@ -114,9 +134,26 @@ function showToast() {
     setTimeout(() => toast.classList.remove('show'), 3000);
 }
 
-// Função para scroll suave
+// Função para abrir e fechar o menu mobile
+function toggleMenu(forceState) {
+    const nav = document.querySelector('header nav');
+    if (typeof forceState === 'boolean') {
+        nav.classList.toggle('open', forceState);
+    } else {
+        nav.classList.toggle('open');
+    }
+}
+
+// Função para scroll suave com compensação do header fixo
 function scrollToSection(sectionId) {
-    document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+    const headerHeight = document.querySelector('header').offsetHeight;
+    const section = document.getElementById(sectionId);
+    const topPosition = section.getBoundingClientRect().top + window.pageYOffset - headerHeight - -41;
+    window.scrollTo({ top: topPosition, behavior: 'smooth' });
+    const nav = document.querySelector('header nav');
+    if (nav.classList.contains('open')) {
+        nav.classList.remove('open');
+    }
 }
 
 // Inicialização
