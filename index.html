@@ -1,99 +1,353 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loja AGENS FITNESS</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>AgenStore | Acessórios, Suplementos & Roupas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="estilo/style.css">
 </head>
+
 <body>
-    <!-- Header fixo -->
-    <header>
-        <div class="logo">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+
+    <!-- NAV -->
+    <nav id="navbar">
+        <a href="#" class="nav-logo">AGENS<span class="accent">STORE</span></a>
+        <ul class="nav-links">
+            <li><a href="#produtos">Produtos</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+        <button class="nav-cart" id="cartBtn" aria-label="Abrir carrinho">
+            <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <path d="M16 10a4 4 0 01-8 0" />
             </svg>
-            AGENS FITNESS
-        </div>
-        <button class="mobile-menu" onclick="toggleMenu()" aria-label="Abrir menu" type="button">☰</button>
-        <nav>
-            <a href="#hero" onclick="scrollToSection('hero'); event.preventDefault();">Início</a>
-            <a href="#products" onclick="scrollToSection('products'); event.preventDefault();">Produtos</a>
-            <a href="#about" onclick="scrollToSection('about'); event.preventDefault();">Sobre</a>
-            <a href="#contact" onclick="scrollToSection('contact'); event.preventDefault();">Contato</a>
-        </nav>
-        <div class="cart-icon" onclick="toggleCart()">
-            🛒
-            <span class="cart-count" id="cart-count">0</span>
-        </div>
-    </header>
+            <span class="cart-badge" id="cartBadge">0</span>
+        </button>
+    </nav>
 
-    <!-- Hero -->
-    <section id="hero" class="hero">
-        <h1>LOJA AGENS FITNESS !</h1>
-        <p>Suplementos, Roupas e Acessórios</p>
-        <button class="btn" onclick="scrollToSection('products')">VER PRODUTOS</button>
-    </section>
-
-    <!-- Produtos -->
-    <section id="products" class="products">
-        <div class="filters">
-            <button class="filter-btn active" onclick="filterProducts('todos')">TODOS</button>
-            <button class="filter-btn" onclick="filterProducts('suplementos')">SUPLEMENTOS</button>
-            <button class="filter-btn" onclick="filterProducts('roupas')">ROUPAS</button>
-            <button class="filter-btn" onclick="filterProducts('acessorios')">ACESSÓRIOS</button>
-        </div>
-        <div class="product-grid" id="product-grid">
-            <!-- Produtos serão inseridos aqui via JS -->
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-grid"></div>
+        <div class="hero-content">
+            <h1>ELEVE SEU <span class="highlight">TREINO</span> AO PRÓXIMO NÍVEL</h1>
+            <p>Acessórios, suplementos e roupas de alta performance para quem leva o treino a sério.</p>
+            <div class="hero-cta">
+                <a href="#produtos" class="btn-primary">Ver Produtos</a>
+                <a href="#sobre" class="btn-outline">Conheça a loja</a>
+            </div>
         </div>
     </section>
 
-    <!-- Carrinho sidebar -->
-    <div class="cart-sidebar" id="cart-sidebar">
-        <div class="cart-close" onclick="toggleCart()">✕</div>
-        <h2>Carrinho</h2>
-        <div id="cart-items">
-            <!-- Itens do carrinho -->
+    <!-- STATS -->
+    <div class="stats">
+        <div class="stat-item reveal">
+            <span class="stat-number" data-target="50">0</span>
+            <span class="stat-label">Produtos disponíveis</span>
         </div>
-        <div class="cart-total" id="cart-total">Total: R$ 0,00</div>
-        <button class="whatsapp-btn" onclick="sendWhatsApp()">PEDIR VIA WHATSAPP</button>
+        <div class="stat-item reveal">
+            <span class="stat-number" data-target="1200">0</span>
+            <span class="stat-label">Clientes satisfeitos</span>
+        </div>
+        <div class="stat-item reveal">
+            <span class="stat-number" data-target="12">0</span>
+            <span class="stat-label">Anos no mercado</span>
+        </div>
     </div>
 
-    <!-- Sobre -->
-    <section id="about" class="about">
-        <h2>Sobre a Loja</h2>
-        <p>Na AGENS FITNESS, oferecemos produtos de alta qualidade para atletas e entusiastas do fitness. Nossa loja está localizada na academia, garantindo conveniência e suporte especializado.</p>
-        <div class="about-features">
-            <div class="feature">
-                <div class="feature-icon">🏋️</div>
-                <p>Produtos Selecionados</p>
+    <!-- CATEGORIAS -->
+    <section class="categories" id="categorias">
+        <div class="section-header reveal">
+            <span class="section-tag">explore</span>
+            <h2 class="section-title">NOSSAS CATEGORIAS</h2>
+        </div>
+        <div class="cat-grid">
+            <div class="cat-card reveal" onclick="filterProducts('acessorios')">
+                <div class="cat-bg"></div>
+                <div class="cat-icon">🎽</div>
+                <div class="cat-label">
+                    <h3>ACESSÓRIOS</h3>
+                    <p>Luvas, cintos, munhequeiras e mais</p>
+                </div>
             </div>
-            <div class="feature">
-                <div class="feature-icon">📦</div>
-                <p>Retirada na Academia</p>
+            <div class="cat-card reveal" style="transition-delay:.1s" onclick="filterProducts('suplementos')">
+                <div class="cat-bg"></div>
+                <div class="cat-icon">💊</div>
+                <div class="cat-label">
+                    <h3>SUPLEMENTOS</h3>
+                    <p>Whey, creatina, pré-treino e mais</p>
+                </div>
             </div>
-            <div class="feature">
-                <div class="feature-icon">✅</div>
-                <p>Estoque Atualizado Todo Dia</p>
+            <div class="cat-card reveal" style="transition-delay:.2s" onclick="filterProducts('roupas')">
+                <div class="cat-bg"></div>
+                <div class="cat-icon">👕</div>
+                <div class="cat-label">
+                    <h3>ROUPAS</h3>
+                    <p>Camisetas, shorts, leggings e mais</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="footer-info">
-            <p><strong>Horários:</strong> Seg–Sex 6h–12h / 15h–21h | Sáb 8h–12h</p>
-            <p><strong>Contato:</strong> WhatsApp +55 11 96175-2771</p>
-            <p><strong>Email:</strong> agens@agensfitness.com.br</p>
-            <p><strong>Endereço:</strong> Av. Dr. Antônio Álvaro, 137 - Santo André/SP</p>
-            <p><strong>Instagram:</strong> @agens_fitness</p>
+    <!-- PRODUTOS -->
+    <section class="products" id="produtos">
+        <div class="section-header reveal">
+            <span class="section-tag">loja</span>
+            <h2 class="section-title">NOSSOS PRODUTOS</h2>
+        </div>
+
+        <div class="filter-bar">
+            <button class="filter-btn active" onclick="filterProducts('todos', this)">Todos</button>
+            <button class="filter-btn" onclick="filterProducts('acessorios', this)">Acessórios</button>
+            <button class="filter-btn" onclick="filterProducts('suplementos', this)">Suplementos</button>
+            <button class="filter-btn" onclick="filterProducts('roupas', this)">Roupas</button>
+        </div>
+
+        <div class="products-list" id="productsList">
+
+            <div class="product-row" data-cat="acessorios">
+                <div class="product-thumb" style="background:linear-gradient(135deg,#0c3460,#1a5fa8)">🥊</div>
+                <div class="product-info">
+                    <div class="product-cat">Acessórios</div>
+                    <div class="product-name">LUVAS DE TREINO PRO</div>
+                    <div class="product-desc">Proteção total para suas mãos com palmeira de couro sintético e suporte de
+                        pulso ajustável. Ideal para musculação e crossfit.</div>
+                </div>
+                <div class="product-buy">
+                    <div class="product-price">R$ 89<span>À vista no PIX</span></div>
+                    <button class="add-cart-btn" onclick="addToCart('Luvas de Treino Pro', 89, '🥊')">
+                        <svg viewBox="0 0 24 24" stroke-width="2">
+                            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+                            <line x1="3" y1="6" x2="21" y2="6" />
+                            <path d="M16 10a4 4 0 01-8 0" />
+                        </svg>
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+
+            <div class="product-row" data-cat="suplementos">
+                <div class="product-thumb" style="background:linear-gradient(135deg,#042c53,#185fa5)">🥤</div>
+                <div class="product-info">
+                    <div class="product-cat">Suplementos</div>
+                    <div class="product-name">WHEY PROTEIN 2KG</div>
+                    <div class="product-desc">Proteína de alta qualidade com 27g de proteína por dose. Fórmula isolada e
+                        concentrada, sabor chocolate belga. Recuperação muscular otimizada.</div>
+                </div>
+                <div class="product-buy">
+                    <div class="product-price">R$ 249<span>À vista no PIX</span></div>
+                    <button class="add-cart-btn" onclick="addToCart('Whey Protein 2kg', 249, '🥤')">
+                        <svg viewBox="0 0 24 24" stroke-width="2">
+                            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+                            <line x1="3" y1="6" x2="21" y2="6" />
+                            <path d="M16 10a4 4 0 01-8 0" />
+                        </svg>
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+
+            <div class="product-row" data-cat="roupas">
+                <div class="product-thumb" style="background:linear-gradient(135deg,#0d1b2a,#2b7de9)">👕</div>
+                <div class="product-info">
+                    <div class="product-cat">Roupas</div>
+                    <div class="product-name">CAMISETA DRY FIT AGENS</div>
+                    <div class="product-desc">Tecnologia de secagem rápida com tecido respirável e proteção UV. Design
+                        exclusivo AgensStore em cores neutras e vibrantes. Disponível em P, M, G e GG.</div>
+                </div>
+                <div class="product-buy">
+                    <div class="product-price">R$ 79<span>À vista no PIX</span></div>
+                    <button class="add-cart-btn" onclick="addToCart('Camiseta Dry Fit Agens', 79, '👕')">
+                        <svg viewBox="0 0 24 24" stroke-width="2">
+                            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+                            <line x1="3" y1="6" x2="21" y2="6" />
+                            <path d="M16 10a4 4 0 01-8 0" />
+                        </svg>
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+
+            <div class="product-row" data-cat="acessorios">
+                <div class="product-thumb" style="background:linear-gradient(135deg,#0c3460,#1a5fa8)">🏋️</div>
+                <div class="product-info">
+                    <div class="product-cat">Acessórios</div>
+                    <div class="product-name">CINTO LEVANTAMENTO POWER</div>
+                    <div class="product-desc">Couro legítimo com fivela dupla de metal. Largura de 10cm para máximo
+                        suporte lombar em agachamentos e levantamentos pesados.</div>
+                </div>
+                <div class="product-buy">
+                    <div class="product-price">R$ 139<span>À vista no PIX</span></div>
+                    <button class="add-cart-btn" onclick="addToCart('Cinto Levantamento Power', 139, '🏋️')">
+                        <svg viewBox="0 0 24 24" stroke-width="2">
+                            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+                            <line x1="3" y1="6" x2="21" y2="6" />
+                            <path d="M16 10a4 4 0 01-8 0" />
+                        </svg>
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+
+            <div class="product-row" data-cat="suplementos">
+                <div class="product-thumb" style="background:linear-gradient(135deg,#042c53,#185fa5)">⚡</div>
+                <div class="product-info">
+                    <div class="product-cat">Suplementos</div>
+                    <div class="product-name">PRÉ-TREINO EXPLOSIVE</div>
+                    <div class="product-desc">Fórmula com cafeína, beta-alanina e L-citrulina para máximo desempenho.
+                        Energia sem crash, foco total e pump intenso. 30 doses por pote.</div>
+                </div>
+                <div class="product-buy">
+                    <div class="product-price">R$ 119<span>À vista no PIX</span></div>
+                    <button class="add-cart-btn" onclick="addToCart('Pré-treino Explosive', 119, '⚡')">
+                        <svg viewBox="0 0 24 24" stroke-width="2">
+                            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+                            <line x1="3" y1="6" x2="21" y2="6" />
+                            <path d="M16 10a4 4 0 01-8 0" />
+                        </svg>
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+
+            <div class="product-row" data-cat="roupas">
+                <div class="product-thumb" style="background:linear-gradient(135deg,#0d1b2a,#2b7de9)">🩱</div>
+                <div class="product-info">
+                    <div class="product-cat">Roupas</div>
+                    <div class="product-name">LEGGING COMPRESSION FEMME</div>
+                    <div class="product-desc">Compressão muscular de alta performance com tecido de 4 vias. Cintura alta
+                        com cós largo, bolso lateral e tecnologia antibacteriana integrada.</div>
+                </div>
+                <div class="product-buy">
+                    <div class="product-price">R$ 109<span>À vista no PIX</span></div>
+                    <button class="add-cart-btn" onclick="addToCart('Legging Compression Femme', 109, '🩱')">
+                        <svg viewBox="0 0 24 24" stroke-width="2">
+                            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+                            <line x1="3" y1="6" x2="21" y2="6" />
+                            <path d="M16 10a4 4 0 01-8 0" />
+                        </svg>
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SOBRE -->
+    <section class="sobre" id="sobre">
+        <div class="sobre-inner">
+            <div class="sobre-visual reveal-left">
+                <div class="sobre-box">
+                    <span class="sobre-emoji">🏆</span>
+                    <p style="color:var(--gray-muted);font-size:.9rem">Referência em treinamento personalizado além da AgensStore</p>
+                    <p class="venha-conhecer"><a href="https://agensfitness.com.br/">VENHA CONHECER !</a></p>
+                    <div class="sobre-stats">
+                        <div class="sobre-stat"><strong>12+</strong><small>Anos</small></div>
+                        <div class="sobre-stat"><strong>1.2k+</strong><small>Clientes</small></div>
+                        <div class="sobre-stat"><strong>50+</strong><small>Produtos</small></div>
+                        <div class="sobre-stat"><strong>4.9</strong><small>Nota média</small></div>
+                    </div>
+                </div>
+            </div>
+            <div class="sobre-text reveal-right">
+                <div class="section-tag">sobre nós</div>
+                <h2>FEITO PARA QUEM TREINA DE VERDADE</h2>
+                <p>Há 10 anos, nossa história começou no chão da academia, acompanhando cada treino e cada superação.
+                    Hoje, essa mesma paixão ganha um novo formato. Unimos nossa tradição no fitness com a conveniência
+                    do digital para criar sua nova loja virtual favorita. Onde quer que você esteja, nossa essência
+                    continua a mesma.</p>
+                <ul class="feature-list">
+                    <li>Produtos selecionados com critério de qualidade</li>
+                    <li>Entrega rápida para todo o Brasil</li>
+                    <li>Suporte via WhatsApp 7 dias por semana</li>
+                    <li>Troca e devolução sem burocracia</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section class="contato" id="contato">
+        <div class="contato-inner">
+            <div class="section-header reveal">
+                <span class="section-tag">fale conosco</span>
+                <h2 class="section-title">ENTRE EM CONTATO</h2>
+            </div>
+            <p class="reveal">Tem alguma dúvida sobre produtos, pedidos ou prazos ? Nossa equipe está pronta para te
+                ajudar !</p>
+            <div class="contato-cards">
+                <div class="contact-card reveal">
+                    <span class="contact-icon">📱</span>
+                    <h4>WHATSAPP</h4>
+                    <p>Resposta rápida e atendimento personalizado</p>
+                    <a href="https://wa.me/5511961752771?text=Olá! Vim pelo site da AgensStore e gostaria de mais informações sobre a academia."
+                        class="btn-primary" target="_blank"
+                        style="display:inline-flex;align-items:center;gap:8px;font-size:.85rem;padding:10px 20px">
+                        💬 Chamar no WhatsApp
+                    </a>
+                </div>
+                <div class="contact-card reveal">
+                    <span class="contact-icon">📍</span>
+                    <h4>LOCALIZAÇÃO</h4>
+                    <p>Av. Dr. Antônio Álvaro, 137 - Vila Assunção, Santo André - SP, 09030-520</p>
+                </div>
+                <div class="contact-card reveal">
+                    <span class="contact-icon">⏰</span>
+                    <h4>HORÁRIO DE FUNCIONAMENTO</h4>
+                    <p>Segunda a Sexta : 6h às 12h (manhã) e 14h às 21h (tarde/noite)<br>Sábado: 8h às 12h<br>Domingo e Feriados: Fechado</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-logo">AGENS<span>STORE</span></div>
+            <p>© 2025 AgensStore — Todos os direitos reservados</p>
+            <p style="font-size:.8rem;color:var(--gray-muted)">Feito com 💙 para atletas</p>
         </div>
     </footer>
 
-    <!-- Toast -->
-    <div class="toast" id="toast">✅ Adicionado ao carrinho!</div>
+    <!-- CART OVERLAY -->
+    <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+
+    <!-- CART SIDEBAR -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2>CARRINHO</h2>
+            <button class="cart-close" onclick="closeCart()">✕</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="cart-empty">
+                <span>🛒</span>
+                Seu carrinho está vazio.<br>Adicione produtos para começar!
+            </div>
+        </div>
+        <div class="cart-footer" id="cartFooter" style="display:none">
+            <div class="cart-total">
+                <span>Total:</span>
+                <strong id="cartTotal">R$ 0</strong>
+            </div>
+            <button class="whatsapp-btn" onclick="sendToWhatsApp()">
+                💬 Pedir via WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast">Produto adicionado! 🛒</div>
 
     <script src="js/script.js"></script>
 </body>
+
+
 </html>
