@@ -162,3 +162,20 @@ document.querySelectorAll('.cat-card').forEach(card => {
         document.getElementById('produtos').scrollIntoView({ behavior: 'smooth' });
     });
 });
+
+// Mobile nav toggle
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.querySelector('.nav-links');
+if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+        const open = navLinks.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', open);
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(a => {
+        a.addEventListener('click', () => {
+            navLinks.classList.remove('open');
+            navToggle.setAttribute('aria-expanded', 'false');
+        });
+    });
+}
