@@ -27,6 +27,13 @@ html {
     scroll-behavior: smooth;
 }
 
+/* evitar barra de rolagem horizontal em dispositivos pequenos */
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 body {
     background: var(--navy);
     color: var(--white);
@@ -151,6 +158,14 @@ nav.scrolled {
     align-items: center;
     justify-content: center;
     display: none;
+}
+
+/* esconder toggle por padrão (apenas exibir em telas pequenas) */
+.nav-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    padding: 0;
 }
 
 /* ============ HERO ============ */
@@ -1079,7 +1094,8 @@ footer p {
         border: 1px solid rgba(79, 163, 247, 0.12);
         border-radius: 8px;
         cursor: pointer;
-        margin-left: 0.75rem;
+        margin-left: auto;
+        margin-right: 6px;
     }
 
     .hamburger,
@@ -1111,6 +1127,15 @@ footer p {
     .nav-links {
         display: none;
     }
+
+    /* stats responsivo */
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-item { padding: 1.25rem 1rem; }
+    .stat-number { font-size: 2rem; }
+    .stat-label { font-size: 0.8rem; }
 
     .nav-links.open {
         display: flex;
@@ -1165,6 +1190,9 @@ footer p {
         padding: 100px 6% 60px;
     }
 
+    /* reduzir padding do nav para evitar soma de larguras */
+    nav { padding: 0 4%; }
+
     .hero h1 {
         font-size: clamp(2rem, 8vw, 3.4rem);
         letter-spacing: 1px;
@@ -1179,6 +1207,7 @@ footer p {
         grid-template-columns: 1fr;
         gap: 0.75rem;
         align-items: flex-start;
+        overflow: hidden;
     }
 
     .product-thumb {
@@ -1212,3 +1241,7 @@ footer p {
     .products-list { max-width: 800px; }
     .sobre-inner { gap: 4rem; }
 }
+
+/* garantir que toast e elementos posicionados não excedam a largura */
+.toast { max-width: calc(100% - 32px); }
+.cart-sidebar { box-sizing: border-box; }
